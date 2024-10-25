@@ -1,0 +1,17 @@
+.error {
+  padding: 70px 0 0 0;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  span {
+    color: rgb(240, 142, 68);
+    font-weight: 700;
+  }
+  &.browser {
+    color: #fff;
+    span {
+      color: rgb(240, 142, 68);
+      font-weight: 700;
+    }
+  }
+}

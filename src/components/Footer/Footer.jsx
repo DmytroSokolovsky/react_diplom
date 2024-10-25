@@ -1,19 +1,26 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import s from './Footer.module.scss'
-import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
-import cn from 'classnames'
-import { useTelegram } from '../../hooks/useTelegram'
-import { useContext } from 'react'
-import { UserIdContext } from '../../context/context'
+// Імпорт необхідних модулів і бібліотек
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import s from './Footer.module.scss';
+import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons';
+import cn from 'classnames';
+import { useTelegram } from '../../hooks/useTelegram';
+import { useContext } from 'react';
+import { UserIdContext } from '../../context/context';
 
+// Компонент для відображення футера зі всією контактною інформацією та мапою
 const Footer = () => {
+  // Встановлення класів для блоку з контактами
   let contactsClass = cn(s.footer__contacts, s.contacts);
+  // Встановлення класів для блоку з розкладом
   let scheduleClass = cn(s.footer__schedule, s.schedule);
 
-  const {isDarkTheme} = useTelegram()
+  // Отримання теми з Telegram WebApp
+  const { isDarkTheme } = useTelegram();
 
+  // Отримання userId з контексту
   const userId = useContext(UserIdContext);
-  
+
+  // Встановлення динамічних класів для блоку з мапою в залежності від теми і наявності userId
   let mapClass = cn(s.footer__map, {
     [s.footer__map_dark]: isDarkTheme,
     [s.footer__map_light]: !isDarkTheme,
@@ -24,6 +31,7 @@ const Footer = () => {
     <footer className={s.footer} role="contentinfo" aria-label="Контактна інформація та режим роботи">
       <div className={s.footer__body}>
         <div className={s.footer__column}>
+          {/* Контактна інформація */}
           <div className={contactsClass}>
             <h2 tabIndex={0} className={s.contacts__title} id="contacts-title">Контакти</h2>
             <div className={s.contacts__row}>
@@ -56,14 +64,20 @@ const Footer = () => {
               <a className={s.contacts__text} href="mailto:info@amelsmart.com" aria-label="Електронна пошта для зв'язку з клінікою">info@amelsmart.com</a>
             </div>
           </div>
+
+          {/* Режим роботи */}
           <div className={scheduleClass}>
             <h2 tabIndex={0} className={s.schedule__title} id="schedule-title">Режим роботи</h2>
             <div tabIndex={0} className={s.schedule__text} aria-labelledby="schedule-title">
               <span>Пн-Нд:</span> 09:00 - 19:00
             </div>
           </div>
+
+          {/* Авторські права */}
           <div className={s.footer__copy} aria-label="Авторські права">© 2024. Amel Dental Clinic</div>
         </div>
+
+        {/* Блок з мапою */}
         <div className={s.footer__column}>
           <div className={mapClass}>
             <h2 className={s.map__title} id="map-title">Мапа</h2>
@@ -85,4 +99,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;

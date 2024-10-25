@@ -1,38 +1,51 @@
+// Імпорт необхідних модулів і бібліотек
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom"
 import { UserIdContext } from "../../context/context";
 import s from './Header.module.scss'
 import cn from 'classnames'
 
+// Компонент Header приймає пропси isMenuOpen та setIsMenuOpen
 const Header = ({isMenuOpen, setIsMenuOpen}) => {
+  // Отримуємо userId з контексту UserIdContext
   const userId = useContext(UserIdContext);
 
+  // Функція для переключення стану меню
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
+  // Функція для закриття меню
   const closeMenu = () => {
     setIsMenuOpen(false);
   }
 
+  // Визначаємо класи для меню з урахуванням стану меню та наявності userId
   let menuClass = cn(s.header__menu, s.menu, {
     [s.active]: isMenuOpen,
     [s.active_browser]: !userId,
   });
+  
+  // Визначаємо класи для бургер-іконки
   let burgerClass = cn(s.header__burger, {
     [s.active]: isMenuOpen,
     [s.browser]: !userId,
   });
-  let linkClass = cn(s.menu__link, s.menu__link_active);
 
+  // Визначаємо класи для шапки з урахуванням наявності userId
   let headerClass = cn(s.header, {
     [s.browser]: !userId,
   });
 
+  // Визначаємо класи для активного посилання в меню
+  let linkClass = cn(s.menu__link, s.menu__link_active);
+
   return (
     <>
+    {/* Шапка сайту, додатково враховується наявність userId */}
     <header className={!userId ? headerClass : s.header} role="banner">
       <div className={s.header__body}>
+        {/* Лого з посиланням на головну сторінку */}
         <Link 
           to={`/doctors`} 
           className={s.header__logo} 
@@ -44,6 +57,7 @@ const Header = ({isMenuOpen, setIsMenuOpen}) => {
             loading="lazy"
           />
         </Link>
+        {/* Бургер-іконка для відкриття/закриття меню */}
         <div 
           className={burgerClass} 
           onClick={toggleMenu} 
@@ -56,8 +70,10 @@ const Header = ({isMenuOpen, setIsMenuOpen}) => {
           <span></span>
           <span></span>
         </div>
+        {/* Основне меню */}
         <nav className={menuClass} aria-label="Основне меню">
           <ul className={s.menu__list}>
+            {/* Пункт меню з посиланням на сторінку лікарів */}
             <li onClick={closeMenu}>
               <NavLink
                 to="/doctors"
@@ -68,6 +84,7 @@ const Header = ({isMenuOpen, setIsMenuOpen}) => {
                 Наші лікарі
               </NavLink>
             </li> 
+            {/* Пункт меню з посиланням на сторінку запису */}
             <li onClick={closeMenu}>
               <NavLink
                 to="/registration"
@@ -78,6 +95,7 @@ const Header = ({isMenuOpen, setIsMenuOpen}) => {
                 Запис
               </NavLink>
             </li>
+            {/* Додається пункт меню "Мої записи" за наявності userId */}
             {userId && (
               <li onClick={closeMenu}>
                 <NavLink
@@ -94,7 +112,6 @@ const Header = ({isMenuOpen, setIsMenuOpen}) => {
         </nav>
       </div> 
     </header>
-
     </>
   )
 }

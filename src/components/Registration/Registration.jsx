@@ -1,3 +1,4 @@
+// Імпорт необхідних модулів і бібліотек
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { UserIdContext } from '../../context/context';
 import { registrationAPI } from '../../api/registration-api';
@@ -11,8 +12,10 @@ import { Toast } from '../common/Toast/Toast';
 import s from './Registration.module.scss'
 
 function Registration() {
+  // Отримання Telegram API
   const { tg, onReady, showMainButton, hideMainButton, setButtonText, setEventMainButtonClicked, removeEventMainButtonClicked, sendDataToTelegram } = useTelegram();
 
+  // Стани для зберігання даних
   const [specializations, setSpecializations] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [selectedSpecialization, setSelectedSpecialization] = useState(null);
@@ -27,24 +30,26 @@ function Registration() {
   const [isFormValid, setIsFormValid] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');  
 
+  // Отримання userId з контексту
   let userId = useContext(UserIdContext);
 
+  // Функція для відправки даних
   const onSendData = useCallback(async () => {
-    if (userId) {
-      userId = Number(userId);
-    }
+    const currentUserId = userId ? Number(userId) : null;
 
+    // Формування даних для відправки
     const data = {
       doctor: selectedDoctor.name,
       doctor_id: selectedDoctor?.telegram_id,
       specialization: selectedSpecialization,
       date: selectedDate,
       time: selectedSlot,
-      user_id: userId,
+      user_id: currentUserId,
       patient_name: patientName,
       patient_phone_number: Number(patientPhone),
     };
 
+    // Повідомлення для лікаря
     const messageForDoctor =         
   `
   ✍️ У вас новий запис на прийом:
@@ -56,13 +61,16 @@ function Registration() {
   `;
 
     try {
+      // Додавання запису
       await registrationAPI.addRecord(data);
 
       if (userId) {
+        // Відправка даних до Telegram
         sendDataToTelegram(data);
       } else {
         if (data.doctor_id) {
           try {
+            // Відправка повідомлення лікарю
             await registrationAPI.sendMessageToDoctor(data.doctor_id, messageForDoctor);
           } catch (error) {
             console.error('Помилка при відправленні повідомлення лікарю:', error);
@@ -80,9 +88,9 @@ function Registration() {
       }
       resetForm();
     }
-  }, [selectedDoctor, selectedSpecialization, selectedSlot, selectedDate, patientName, patientPhone, userId, sendDataToTelegram, tg, isFormValid]);
+  }, [selectedDoctor, selectedSpecialization, selectedSlot, selectedDate, patientName, patientPhone, userId, sendDataToTelegram]);
 
-
+  // Скидання форми
   const resetForm = () => {
     setDoctors([]);
     setSelectedSpecialization(null);
@@ -97,6 +105,7 @@ function Registration() {
     setIsFormValid(false); 
   };
 
+  // Обробка вводу даних пацієнта
   const handleDataInput = useCallback(() => {
     const phoneRegex = /^380\d{9}$/; 
     if (patientName.trim() !== '' && phoneRegex.test(patientPhone)) {
@@ -107,6 +116,7 @@ function Registration() {
     setIsDataEntered(true);
   }, [patientName, patientPhone]);
 
+  // Виклик при готовності Telegram
   useEffect(() => {
     onReady();
     setEventMainButtonClicked(onSendData);
@@ -115,6 +125,7 @@ function Registration() {
     };
   }, [onSendData, onReady, tg, setEventMainButtonClicked, removeEventMainButtonClicked]);
 
+  // Обробка натискання клавіші Enter
   const handleKeyDown = useCallback((event) => {
     if (event.key === 'Enter') {
       if (userId && selectedSlot && isFormValid) {
@@ -123,6 +134,7 @@ function Registration() {
     }
   }, [onSendData, isFormValid, selectedSlot, userId]);
 
+  // Завантаження спеціалізацій лікарів
   useEffect(() => {
     onReady();
     registrationAPI.getSpecializations().then(setSpecializations).catch(error => {
@@ -130,10 +142,12 @@ function Registration() {
     });
   }, [tg, onReady]);
 
+  // Встановлення тексту кнопки
   useEffect(() => {
     setButtonText('Записатися');
   }, [tg, setButtonText]);
 
+  // Показ/сховування основної кнопки
   useEffect(() => {
     if (selectedSlot && isFormValid) {
       showMainButton();
@@ -142,6 +156,7 @@ function Registration() {
     }
   }, [selectedSlot, showMainButton, hideMainButton, isFormValid]);
 
+  // Обробка вибору спеціалізації
   const handleClickSpecialization = (specialization) => {
     if (isDataEntered) {
       setSelectedSpecialization(specialization);
@@ -155,6 +170,7 @@ function Registration() {
     }
   };
 
+  // Обробка вибору лікаря
   const handleClickDoctor = (doctor) => {
     setSelectedDoctor(doctor);
     setSelectedDate(null);
@@ -167,6 +183,7 @@ function Registration() {
     });
   };
 
+  // Обробка вибору дати
   const handleSelectDate = (date) => {
     setSelectedDate(date);
     setSelectedSlot(null);
@@ -177,10 +194,12 @@ function Registration() {
     }
   };
 
+  // Обробка вибору слоту
   const handleSelectSlot = (slot) => {
     setSelectedSlot(slot);
   };
 
+  // Показ повідомлення про помилку
   useEffect(() => {
     if (errorMessage) {
       const timer = setTimeout(() => {
@@ -232,10 +251,10 @@ function Registration() {
           aria-label="Записатися на прийом"
           disabled={!isFormValid}
         >
-        Записатися
+          Записатися
         </button>
       }
-      {errorMessage && <Toast errorMessage={errorMessage} />} 
+      {errorMessage && <Toast message={errorMessage} />}
     </div>
   );
 }

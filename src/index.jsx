@@ -1,19 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { UserIdContext } from './context/context';
+import React from 'react'; // Імпортується бібліотека React
+import ReactDOM from 'react-dom/client'; // Імпортується бібліотека для рендерингу React компонентів
+import App from './App'; // Імпортується головний компонент App
+import reportWebVitals from './reportWebVitals'; // Імпортується функція для вимірювання продуктивності
+import { UserIdContext } from './context/context'; // Імпортується контекст для передачі userId
 
+// Отримуються параметри з URL
 const params = new URLSearchParams(window.location.search);
-let userId = params.get('user_id');
+let userId = params.get('user_id'); // Отримується userId з параметрів URL
 
+// Якщо userId існує, зберігається в localStorage
 if (userId) {
   localStorage.setItem('userId', userId);
 } else {
+  // Якщо userId не знайдено в URL, отримується з localStorage
   userId = localStorage.getItem('userId');
 }
 
+// Створюється корінь для рендерингу React компонентів
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Рендериться головний компонент App з контекстом userId
 root.render(
   <React.StrictMode>
     <UserIdContext.Provider value={userId}>
@@ -22,7 +28,6 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Викликається функція для вимірювання продуктивності, якщо потрібно
 reportWebVitals();
+

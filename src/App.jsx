@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from "react-router-dom"
 import Header from './components/Header/Header';
 import './App.scss'
 import s from './App.module.scss'
@@ -34,7 +34,7 @@ const App = () => {
   }, [userId]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className={s.wrapper}>
           <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
           <main className={s.main}>
@@ -53,7 +53,7 @@ const App = () => {
           </main>
           <Footer/>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

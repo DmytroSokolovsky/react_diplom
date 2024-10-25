@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/react_diplom/static/css/main.24f8c55a.css",
-    "main.js": "/react_diplom/static/js/main.2d3e2aa8.js",
+    "main.js": "/react_diplom/static/js/main.5b2d04f3.js",
     "static/css/118.1c5bf0bc.chunk.css": "/react_diplom/static/css/118.1c5bf0bc.chunk.css",
-    "static/js/118.eefc2a84.chunk.js": "/react_diplom/static/js/118.eefc2a84.chunk.js",
+    "static/js/118.0e899aa1.chunk.js": "/react_diplom/static/js/118.0e899aa1.chunk.js",
     "static/css/892.6460ada6.chunk.css": "/react_diplom/static/css/892.6460ada6.chunk.css",
-    "static/js/892.e74bf953.chunk.js": "/react_diplom/static/js/892.e74bf953.chunk.js",
+    "static/js/892.e600ff79.chunk.js": "/react_diplom/static/js/892.e600ff79.chunk.js",
     "static/css/41.298a2379.chunk.css": "/react_diplom/static/css/41.298a2379.chunk.css",
-    "static/js/41.dd5455b0.chunk.js": "/react_diplom/static/js/41.dd5455b0.chunk.js",
+    "static/js/41.d64cfc67.chunk.js": "/react_diplom/static/js/41.d64cfc67.chunk.js",
     "static/css/277.4114ea62.chunk.css": "/react_diplom/static/css/277.4114ea62.chunk.css",
-    "static/js/277.7ce98ff5.chunk.js": "/react_diplom/static/js/277.7ce98ff5.chunk.js",
+    "static/js/277.5eee89b6.chunk.js": "/react_diplom/static/js/277.5eee89b6.chunk.js",
     "static/css/227.6581799f.chunk.css": "/react_diplom/static/css/227.6581799f.chunk.css",
     "static/js/227.7db4dfe0.chunk.js": "/react_diplom/static/js/227.7db4dfe0.chunk.js",
     "static/js/453.63c4db86.chunk.js": "/react_diplom/static/js/453.63c4db86.chunk.js",
@@ -22,15 +22,15 @@
     "static/media/preloader.gif": "/react_diplom/static/media/preloader.a1a996746e5e48352c81.gif",
     "index.html": "/react_diplom/index.html",
     "main.24f8c55a.css.map": "/react_diplom/static/css/main.24f8c55a.css.map",
-    "main.2d3e2aa8.js.map": "/react_diplom/static/js/main.2d3e2aa8.js.map",
+    "main.5b2d04f3.js.map": "/react_diplom/static/js/main.5b2d04f3.js.map",
     "118.1c5bf0bc.chunk.css.map": "/react_diplom/static/css/118.1c5bf0bc.chunk.css.map",
-    "118.eefc2a84.chunk.js.map": "/react_diplom/static/js/118.eefc2a84.chunk.js.map",
+    "118.0e899aa1.chunk.js.map": "/react_diplom/static/js/118.0e899aa1.chunk.js.map",
     "892.6460ada6.chunk.css.map": "/react_diplom/static/css/892.6460ada6.chunk.css.map",
-    "892.e74bf953.chunk.js.map": "/react_diplom/static/js/892.e74bf953.chunk.js.map",
+    "892.e600ff79.chunk.js.map": "/react_diplom/static/js/892.e600ff79.chunk.js.map",
     "41.298a2379.chunk.css.map": "/react_diplom/static/css/41.298a2379.chunk.css.map",
-    "41.dd5455b0.chunk.js.map": "/react_diplom/static/js/41.dd5455b0.chunk.js.map",
+    "41.d64cfc67.chunk.js.map": "/react_diplom/static/js/41.d64cfc67.chunk.js.map",
     "277.4114ea62.chunk.css.map": "/react_diplom/static/css/277.4114ea62.chunk.css.map",
-    "277.7ce98ff5.chunk.js.map": "/react_diplom/static/js/277.7ce98ff5.chunk.js.map",
+    "277.5eee89b6.chunk.js.map": "/react_diplom/static/js/277.5eee89b6.chunk.js.map",
     "227.6581799f.chunk.css.map": "/react_diplom/static/css/227.6581799f.chunk.css.map",
     "227.7db4dfe0.chunk.js.map": "/react_diplom/static/js/227.7db4dfe0.chunk.js.map",
     "453.63c4db86.chunk.js.map": "/react_diplom/static/js/453.63c4db86.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.24f8c55a.css",
-    "static/js/main.2d3e2aa8.js"
+    "static/js/main.5b2d04f3.js"
   ]
 }

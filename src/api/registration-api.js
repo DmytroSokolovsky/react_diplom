@@ -2,7 +2,9 @@ import axios from "axios"; // Імпортується бібліотека axio
 import { instance } from "./api"; // Імпортується налаштований екземпляр axios для API запитів
 
 // Токен бота Telegram для доступу до API
-const TELEGRAM_BOT_TOKEN = '7528553042:AAH--t6VitbS4Su4pDKKsODm1UWkzqnQdMo';
+// const TELEGRAM_BOT_TOKEN = '7528553042:AAH--t6VitbS4Su4pDKKsODm1UWkzqnQdMo';
+
+const TELEGRAM_BOT_TOKEN = process.env.REACT_APP_TELEGRAM_BOT_TOKEN
 // URL для надсилання повідомлень через Telegram API
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 

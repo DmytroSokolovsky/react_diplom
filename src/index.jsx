@@ -33,45 +33,52 @@
 
 
 
+
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserIdContext } from './context/context';
 
-const params = new URLSearchParams(window.location.search);
-let testUserId = params.get('user_id');
+// Функция для получения user_id из URL или localStorage
+const getUserId = () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('user_id');
+  if (id) {
+    localStorage.setItem('userId', id);
+    return id;
+  }
+  return localStorage.getItem('userId');
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Main testUserId={testUserId}/>
+    <Main />
   </React.StrictMode>
 );
 
-function Main({testUserId}) {
-  // const [userId, setUserId] = useState(null);
+function Main() {
+  const [userId, setUserId] = useState(getUserId());
 
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-  //   let id = params.get('user_id');
-
-  //   if (id) {
-  //     localStorage.setItem('userId', id);
-  //     setUserId(id);
-  //   } else {
-  //     const storedId = localStorage.getItem('userId');
-  //     if (storedId) {
-  //       setUserId(storedId);
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Проверяем наличие userId в localStorage
+    const storedId = localStorage.getItem('userId');
+    if (storedId) {
+      setUserId(storedId);
+    }
+  }, []);
 
   return (
-    <UserIdContext.Provider value={testUserId}>
-      <App testUserId={testUserId}/>
+    <UserIdContext.Provider value={userId}>
+      <App testUserId={userId}/>
     </UserIdContext.Provider>
   );
 }
 
 reportWebVitals();
+

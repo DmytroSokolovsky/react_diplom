@@ -81,7 +81,7 @@ const Header = ({isMenuOpen, setIsMenuOpen}) => {
                   isActive ? linkClass : s.menu__link
                 }
               >
-                Наші лікарі userId: {userId}
+                Наші лікарі
               </NavLink>
             </li> 
             {/* Пункт меню з посиланням на сторінку запису */}

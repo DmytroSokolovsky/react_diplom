@@ -4,9 +4,6 @@ import App from './App'; // Імпортується головний компо
 import reportWebVitals from './reportWebVitals'; // Імпортується функція для вимірювання продуктивності
 import { UserIdContext } from './context/context'; // Імпортується контекст для передачі userId
 
-// Очищаємо localStorage перед входом в додаток
-localStorage.clear();
-
 // Отримуються параметри з URL
 const params = new URLSearchParams(window.location.search);
 let userId = params.get('user_id'); // Отримується userId з параметрів URL

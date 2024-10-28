@@ -4,17 +4,20 @@ import App from './App'; // Імпортується головний компо
 import reportWebVitals from './reportWebVitals'; // Імпортується функція для вимірювання продуктивності
 import { UserIdContext } from './context/context'; // Імпортується контекст для передачі userId
 
+// Очищаємо localStorage перед входом в додаток
+localStorage.clear();
+
 // Отримуються параметри з URL
 const params = new URLSearchParams(window.location.search);
 let userId = params.get('user_id'); // Отримується userId з параметрів URL
 
-// // Якщо userId існує, зберігається в localStorage
-// if (userId) {
-//   localStorage.setItem('userId', userId);
-// } else {
-//   // Якщо userId не знайдено в URL, отримується з localStorage
-//   userId = localStorage.getItem('userId');
-// }
+// Якщо userId існує, зберігається в localStorage
+if (userId) {
+  localStorage.setItem('userId', userId);
+} else {
+  // Якщо userId не знайдено в URL, отримується з localStorage
+  userId = localStorage.getItem('userId');
+}
 
 // Створюється корінь для рендерингу React компонентів
 const root = ReactDOM.createRoot(document.getElementById('root'));

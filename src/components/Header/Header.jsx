@@ -6,9 +6,9 @@ import s from './Header.module.scss'
 import cn from 'classnames'
 
 // Компонент Header приймає пропси isMenuOpen та setIsMenuOpen
-const Header = ({isMenuOpen, setIsMenuOpen, testUserId}) => {
+const Header = ({isMenuOpen, setIsMenuOpen}) => {
   // Отримуємо userId з контексту UserIdContext
-  // const userId = useContext(UserIdContext);
+  const userId = useContext(UserIdContext);
 
   // Функція для переключення стану меню
   const toggleMenu = () => {
@@ -23,18 +23,18 @@ const Header = ({isMenuOpen, setIsMenuOpen, testUserId}) => {
   // Визначаємо класи для меню з урахуванням стану меню та наявності userId
   let menuClass = cn(s.header__menu, s.menu, {
     [s.active]: isMenuOpen,
-    [s.active_browser]: !testUserId,
+    [s.active_browser]: !userId,
   });
   
   // Визначаємо класи для бургер-іконки
   let burgerClass = cn(s.header__burger, {
     [s.active]: isMenuOpen,
-    [s.browser]: !testUserId,
+    [s.browser]: !userId,
   });
 
   // Визначаємо класи для шапки з урахуванням наявності userId
   let headerClass = cn(s.header, {
-    [s.browser]: !testUserId,
+    [s.browser]: !userId,
   });
 
   // Визначаємо класи для активного посилання в меню
@@ -43,7 +43,7 @@ const Header = ({isMenuOpen, setIsMenuOpen, testUserId}) => {
   return (
     <>
     {/* Шапка сайту, додатково враховується наявність userId */}
-    <header className={!testUserId ? headerClass : s.header} role="banner">
+    <header className={!userId ? headerClass : s.header} role="banner">
       <div className={s.header__body}>
         {/* Лого з посиланням на головну сторінку */}
         <Link 
@@ -81,7 +81,7 @@ const Header = ({isMenuOpen, setIsMenuOpen, testUserId}) => {
                   isActive ? linkClass : s.menu__link
                 }
               >
-                Наші лікарі userId: {testUserId}
+                Наші лікарі userId: {userId}
               </NavLink>
             </li> 
             {/* Пункт меню з посиланням на сторінку запису */}
@@ -96,7 +96,7 @@ const Header = ({isMenuOpen, setIsMenuOpen, testUserId}) => {
               </NavLink>
             </li>
             {/* Додається пункт меню "Мої записи" за наявності userId */}
-            {testUserId && (
+            {userId && (
               <li onClick={closeMenu}>
                 <NavLink
                   to="/records"

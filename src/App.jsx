@@ -15,7 +15,7 @@ const Registration = lazy(() => import('./components/Registration/Registration')
 const Records = lazy(() => import('./components/Records/Records'));
 const Error = lazy(() => import('./components/Error/Error'));
 
-const App = ({testUserId}) => {
+const App = () => {
   // Стан для відкриття/закриття меню
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
@@ -47,7 +47,7 @@ const App = ({testUserId}) => {
   return (
     <HashRouter>
       <div className={s.wrapper}>
-          <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} testUserId={testUserId}/>
+          <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
           <main className={s.main}>
             <div className={s.container}>
               {/* Відображається прелоадер під час завантаження компонентів */}

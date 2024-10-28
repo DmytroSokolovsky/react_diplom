@@ -38,22 +38,15 @@
 
 
 
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserIdContext } from './context/context';
-
-// Функция для получения user_id из URL или localStorage
-const getUserId = () => {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('user_id');
-  if (id) {
-    localStorage.setItem('userId', id);
-    return id;
-  }
-  return localStorage.getItem('userId');
-};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -63,19 +56,30 @@ root.render(
 );
 
 function Main() {
-  const [userId, setUserId] = useState(getUserId());
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    // Проверяем наличие userId в localStorage
-    const storedId = localStorage.getItem('userId');
-    if (storedId) {
-      setUserId(storedId);
+    const telegramParams = sessionStorage.getItem('__telegram__initParams');
+    
+    if (telegramParams) {
+      const params = JSON.parse(telegramParams);
+      const id = params.user_id;
+
+      if (id) {
+        localStorage.setItem('userId', id);
+        setUserId(id);
+      }
+    } else {
+      const storedId = localStorage.getItem('userId');
+      if (storedId) {
+        setUserId(storedId);
+      }
     }
   }, []);
 
   return (
     <UserIdContext.Provider value={userId}>
-      <App testUserId={userId}/>
+      <App />
     </UserIdContext.Provider>
   );
 }

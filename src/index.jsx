@@ -39,36 +39,39 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserIdContext } from './context/context';
 
-function Main() {
-  const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    let id = params.get('user_id');
-
-    if (id) {
-      localStorage.setItem('userId', id);
-      setUserId(id);
-    } else {
-      const storedId = localStorage.getItem('userId');
-      if (storedId) {
-        setUserId(storedId);
-      }
-    }
-  }, []);
-
-  return (
-    <UserIdContext.Provider value={userId}>
-      <App />
-    </UserIdContext.Provider>
-  );
-}
+const params = new URLSearchParams(window.location.search);
+let testUserId = params.get('user_id');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Main />
+    <Main testUserId={testUserId}/>
   </React.StrictMode>
 );
+
+function Main({testUserId}) {
+  // const [userId, setUserId] = useState(null);
+
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+  //   let id = params.get('user_id');
+
+  //   if (id) {
+  //     localStorage.setItem('userId', id);
+  //     setUserId(id);
+  //   } else {
+  //     const storedId = localStorage.getItem('userId');
+  //     if (storedId) {
+  //       setUserId(storedId);
+  //     }
+  //   }
+  // }, []);
+
+  return (
+    <UserIdContext.Provider value={testUserId}>
+      <App testUserId={testUserId}/>
+    </UserIdContext.Provider>
+  );
+}
 
 reportWebVitals();

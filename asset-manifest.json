@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react_diplom/static/css/main.24f8c55a.css",
-    "main.js": "/react_diplom/static/js/main.ad6bf89a.js",
+    "main.js": "/react_diplom/static/js/main.5b2d04f3.js",
     "static/css/118.1c5bf0bc.chunk.css": "/react_diplom/static/css/118.1c5bf0bc.chunk.css",
     "static/js/118.0e899aa1.chunk.js": "/react_diplom/static/js/118.0e899aa1.chunk.js",
     "static/css/892.6460ada6.chunk.css": "/react_diplom/static/css/892.6460ada6.chunk.css",
@@ -22,7 +22,7 @@
     "static/media/preloader.gif": "/react_diplom/static/media/preloader.a1a996746e5e48352c81.gif",
     "index.html": "/react_diplom/index.html",
     "main.24f8c55a.css.map": "/react_diplom/static/css/main.24f8c55a.css.map",
-    "main.ad6bf89a.js.map": "/react_diplom/static/js/main.ad6bf89a.js.map",
+    "main.5b2d04f3.js.map": "/react_diplom/static/js/main.5b2d04f3.js.map",
     "118.1c5bf0bc.chunk.css.map": "/react_diplom/static/css/118.1c5bf0bc.chunk.css.map",
     "118.0e899aa1.chunk.js.map": "/react_diplom/static/js/118.0e899aa1.chunk.js.map",
     "892.6460ada6.chunk.css.map": "/react_diplom/static/css/892.6460ada6.chunk.css.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.24f8c55a.css",
-    "static/js/main.ad6bf89a.js"
+    "static/js/main.5b2d04f3.js"
   ]
 }
